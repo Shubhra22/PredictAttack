@@ -15,12 +15,15 @@ public class SignUpManager : MonoBehaviour
     public string registerUrl;
     public string loginUrl;
     public string ageGenderUrl;
+    public string heartAttackDataUrl;
 
     string uid;
+
+    public static SignUpManager instance;
     // Use this for initialization
     void Start()
     {
-
+        instance = this;
     }
 
     // Update is called once per frame
@@ -28,6 +31,7 @@ public class SignUpManager : MonoBehaviour
     {
 
     }
+
 
     public void OnClickSignUp()
     {
@@ -151,6 +155,73 @@ public class SignUpManager : MonoBehaviour
 
     }
 
+    public void AddToDataBase(List<string> entry) 
+    {
+        StartCoroutine(HeartAttackDb(entry));
+
+        //print(uid + " "+ www.text);
+
+    }
+
+    IEnumerator HeartAttackDb(List<string> entry)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("UserId", uid);
+        form.AddField("Hypertension", entry[0]);
+        form.AddField("HpYear", entry[1]);
+        form.AddField("Diabeties", entry[2]);
+        form.AddField("DbYear", entry[3]);
+        form.AddField("Cholestrol", entry[4]);
+        form.AddField("CholYear", entry[5]);
+        form.AddField("Smoke", entry[6]);
+        form.AddField("FamilyHpten", entry[7]);
+        form.AddField("Neausea", entry[11]);
+        form.AddField("Sweating", entry[12]);
+        form.AddField("Palpitation", 0);
+        form.AddField("Dyspnea", entry[9]);
+        form.AddField("Syncope", entry[13]);
+        form.AddField("ChestPainLocation", entry[15]);
+
+        form.AddField("MarkFigure", entry[16]);
+        form.AddField("PainType", entry[17]);
+        form.AddField("LastPain", entry[18]);
+        form.AddField("LeftArm", entry[19]);
+        form.AddField("RightArm", entry[20]);
+        form.AddField("Back", entry[21]);
+        form.AddField("UpperJaw", entry[22]);
+
+        form.AddField("NoMovement", entry[23]);
+        form.AddField("AssoticateNeausea", entry[26]);
+        form.AddField("AssoticateVomiting", entry[30]);
+        form.AddField("AssoticatePalpitation", entry[27]);
+        form.AddField("AssoticateDyspnea", entry[24]);
+        form.AddField("AssoticateGiddiness", entry[25]);
+        form.AddField("AssoticateSyncope", entry[29]);
+
+        form.AddField("PainTime", entry[31]);
+        form.AddField("PainRel", entry[32]);
+        form.AddField("PainLong", entry[34]);
+        form.AddField("PianSub", entry[33]);
+        form.AddField("SmilirPain", entry[35]);
+
+        yield return new WaitUntil(() => OutputController.instance.requestComplete == true);
+
+        form.AddField("Class", OutputController.instance.resultText.text);
+        WWW www = new WWW(heartAttackDataUrl, form);
+
+    }
+
+    /*
+$UserId =$_POST["UserId"];
+
+
+
+$PainTime=$_POST["PainTime"]; 31
+$PainRel=$_POST["PainRel"]; 32
+$PainLong =$_POST["PainLong"]; 34
+$PianSub=$_POST["PianSub"]; 33
+$SmilirPain=$_POST["SmilirPain"]; 35
+*/
 
 }
 

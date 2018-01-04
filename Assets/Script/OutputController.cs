@@ -16,6 +16,7 @@ public class OutputController : MonoBehaviour
     public string noheartAttackText;
     public string maybeHeartAttackText;
 
+    public bool requestComplete;
     public string websiteUrl = "http://ssarker.pythonanywhere.com/apps/";
 	// Use this for initialization
 	void Start () 
@@ -80,6 +81,8 @@ public class OutputController : MonoBehaviour
                             break;
 
                     }
+
+                    requestComplete = true;
                     //if(jsonResult.ToString() == "Heart attack" || jsonResult.ToString() == "No heart attack" || jsonResult.ToString() == "May be heart attack")
                     //{
                     //    //Debug.Log(jsonResult.ToString());

@@ -38,13 +38,13 @@ public class Question
             options[0] = new Options
             {
                 name = "Yes",
-                value = 2
+                value = 1
             };
 
             options[1] = new Options
             {
                 name = "No",
-                value = 3
+                value = 0
             };
 
         }
@@ -52,10 +52,10 @@ public class Question
         {
             // options = new Options[3];
             options[0].name = "Yes";
-            options[0].value = 2;
+            options[0].value = 1;
 
             options[1].name = "No";
-            options[1].value = 3;
+            options[1].value = 0;
         }
     }
 }
@@ -104,6 +104,7 @@ public class QuestionControllerScript : MonoBehaviour
         }
 
     }
+
 
     public void MakeQuestion()
     {
@@ -246,38 +247,62 @@ public class QuestionControllerScript : MonoBehaviour
     public void GetOutPut()
     {
         string s = age + "," + gender + ",";
-
+        //string dbEntry ="";
+        List<string> dbEntry = new List<string>();
         int k;
         for (int i = 0; i < questionParent.childCount - 1; i++)
         {
             for (int j = 1; j < questionParent.GetChild(i).childCount; j++)
             {
                 Transform targetObj = questionParent.GetChild(i).GetChild(j);
+               // print(targetObj.gameObject.activeSelf);
 
-                print(targetObj.gameObject.activeSelf);
                 if (targetObj.gameObject.activeSelf)
-                {
+                {                    
+                    if (targetObj.parent.gameObject.activeSelf)
+                    {
+                        print(targetObj.parent.name + " : " + targetObj.GetComponent<InputValues>().key);
+                        if (targetObj.GetComponent<InputValues>().key == "")
+                        {
+                            print(targetObj.parent.name);
+                            ErrorHandler.instance.OnEmptyInput();
+                            return;
+                        }
+                    }
+                    else if (!targetObj.parent.gameObject.activeSelf)
+                    {
+                        targetObj.GetComponent<InputValues>().key = "No";
+                    }
 
+                    dbEntry.Add(targetObj.GetComponent<InputValues>().key);
                     if (Int32.TryParse(targetObj.GetComponent<InputValues>().key, out k))
                     {
                         s += targetObj.GetComponent<InputValues>().key + ",";
                     }
                     else
+                    {
                         s += options[targetObj.GetComponent<InputValues>().key] + ",";
+
+                    }
                 }
                 else
                 {
                     s += options["No"] + ",";
-                    print("NO");
+                    dbEntry.Add("No");
+
+
+                   // print("NO");
                 }
 
             }
         }
         OutputController.instance.ProcessInput(s);
+        SignUpManager.instance.AddToDataBase(dbEntry);
         print(s);
         //return s;
 
     }
+
 
     public void AgeAndGender(string a, string g)
     {
@@ -292,5 +317,4 @@ public class QuestionControllerScript : MonoBehaviour
         }
     }
 }
-
 

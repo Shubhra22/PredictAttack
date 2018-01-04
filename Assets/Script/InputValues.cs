@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputValues : MonoBehaviour
 {
 
-    public string key = "No";
+    public string key = "";
 
     public static InputValues instance;
 	// Use this for initialization
