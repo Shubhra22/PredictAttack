@@ -44,7 +44,7 @@ public class SignUpManager : MonoBehaviour
         string cellNum = signupObject.transform.Find("Mobile").GetComponent<InputField>().text;
         string email = signupObject.transform.Find("Email").GetComponent<InputField>().text;
 
-        AddNewUser(fname, lname, age, gender, profession, cellNum, email);
+        StartCoroutine(AddNewUser(fname, lname, age, gender, profession, cellNum, email));
 
         //
 
@@ -75,7 +75,7 @@ public class SignUpManager : MonoBehaviour
         StartCoroutine(GetUserAgeAndGender("66"));
     }
 
-    public void AddNewUser(string fname, string lname, string age, string gender, string profession, string cell, string email)
+    IEnumerator AddNewUser(string fname, string lname, string age, string gender, string profession, string cell, string email)
     {
         WWWForm form = new WWWForm();
 
@@ -88,6 +88,9 @@ public class SignUpManager : MonoBehaviour
         form.AddField("Email", email);
 
         WWW www = new WWW(registerUrl, form);
+        yield return www;
+        //Reg_failed
+        print(www.text);
         if (www.error == "Error")
         {
             ErrorHandler.instance.OnPhpServerErrors();
@@ -95,7 +98,19 @@ public class SignUpManager : MonoBehaviour
 
         else
         {
-            SuccessHandler.instance.SuccessManager();
+
+            JsonData test = JsonDataManager.instance.JsonPerser(www.text);
+
+            string code = test[0]["code"].ToString();
+            if (code == "Success")
+            {
+                SuccessHandler.instance.SuccessManager();
+            }
+            else if (code == "Reg_failed")
+            {
+                ErrorHandler.instance.OnUserExits();
+            }
+
         }
 
 

@@ -47,62 +47,44 @@ public class JsonDataManager : MonoBehaviour
 }
 
 [System.Serializable]
-public class Currency
-{
-    public string code { get; set; }
-    public string name { get; set; }
-    public string symbol { get; set; }
-}
-
-[System.Serializable]
-public class Language
-{
-    public string iso639_1 { get; set; }
-    public string iso639_2 { get; set; }
-    public string name { get; set; }
-    public string nativeName { get; set; }
-}
-
-[System.Serializable]
-public class Translations
-{
-    public string de { get; set; }
-    public string es { get; set; }
-    public string fr { get; set; }
-    public string ja { get; set; }
-    public string it { get; set; }
-    public string br { get; set; }
-    public string pt { get; set; }
-    public string nl { get; set; }
-    public string hr { get; set; }
-    public string fa { get; set; }
-}
-
-[System.Serializable]
 public class RootObject
 {
-    public string name { get; set; }
-    public List<string> topLevelDomain { get; set; }
-    public string alpha2Code { get; set; }
-    public string alpha3Code { get; set; }
-    public List<string> callingCodes { get; set; }
-    public string capital { get; set; }
-    public List<object> altSpellings { get; set; }
-    public string region { get; set; }
-    public string subregion { get; set; }
-    public int population { get; set; }
-    public List<object> latlng { get; set; }
-    public string demonym { get; set; }
-    public double? area { get; set; }
-    public double? gini { get; set; }
-    public List<string> timezones { get; set; }
-    public List<object> borders { get; set; }
-    public string nativeName { get; set; }
-    public string numericCode { get; set; }
-    public List<Currency> currencies { get; set; }
-    public List<Language> languages { get; set; }
-    public Translations translations { get; set; }
-    public string flag { get; set; }
-    public List<object> regionalBlocs { get; set; }
-    public string cioc { get; set; }
+    public string id { get; set; }
+    public string hypertension { get; set; }
+    public string hyp_med { get; set; }
+    public string diabetes { get; set; }
+    public string dia_med { get; set; }
+    public string cholesterol { get; set; }
+    public string chol_med { get; set; }
+    public string smoke { get; set; }
+    public string family_history { get; set; }
+    public string chest_pain { get; set; }
+    public string cp_loaction { get; set; }
+    public string cp_mark { get; set; }
+    public string cp_type { get; set; }
+    public string Neausea { get; set; }
+    public string Vomiting { get; set; }
+    public string Sweating { get; set; }
+    public string Palpitation { get; set; }
+    public string Dyspnea { get; set; }
+    public string Giddiness { get; set; }
+    public string Syncope { get; set; }
+    public string cp_duration { get; set; }
+    public string LeftArm { get; set; }
+    public string RightArm { get; set; }
+    public string Back { get; set; }
+    public string NoMovement { get; set; }
+    public string UpperJaw { get; set; }
+    public string AssoticateNeausea { get; set; }
+    public string AssoticateVomiting { get; set; }
+    public string AssoticateSweating { get; set; }
+    public string AssoticatePalpitation { get; set; }
+    public string AssoticateDyspnea { get; set; }
+    public string doing_while { get; set; }
+    public string relieved { get; set; }
+    public string persistence { get; set; }
+    public string subsided { get; set; }
+    public string similar_pain { get; set; }
+    public string @class { get; set; }
+    public string Time { get; set; }
 }

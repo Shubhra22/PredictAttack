@@ -10,6 +10,7 @@ public class ErrorHandler : MonoBehaviour
 
     public string internetErrorText;
     public string emptyErrorText;
+    public string userExistsText;
 
 
     public static ErrorHandler instance;
@@ -34,5 +35,11 @@ public class ErrorHandler : MonoBehaviour
     {
         generalErrorScreen.SetActive(true);
         errorText.text = emptyErrorText;
+    }
+
+    public void OnUserExits()
+    {
+        generalErrorScreen.SetActive(true);
+        errorText.text = userExistsText;
     }
 }

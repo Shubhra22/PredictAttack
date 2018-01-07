@@ -192,7 +192,7 @@ public class QuestionControllerScript : MonoBehaviour
         {
             switch (options[key])
             {
-                case 2:
+                case 1:
                     for (int j = i + 2; j <= questions[i].endIndexConditions + i; j++)
                     {
                         questionParent.GetChild(j).gameObject.SetActive(true);
@@ -208,7 +208,7 @@ public class QuestionControllerScript : MonoBehaviour
                     }
 
                     break;
-                case 3:
+                case 0:
                     questionParent.GetChild(i + 1).gameObject.SetActive(true);
                     for (int j = i + 2; j <= questions[i].endIndexConditions + i; j++)
                     {

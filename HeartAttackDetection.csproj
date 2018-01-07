@@ -117,12 +117,14 @@
     <Compile Include="Assets\Script\ButtonClickManager.cs" />
     <Compile Include="Assets\Script\DropDownManager.cs" />
     <Compile Include="Assets\Script\ErrorHandler.cs" />
+    <Compile Include="Assets\Script\GoBackScript.cs" />
     <Compile Include="Assets\Script\InputFieldManager.cs" />
     <Compile Include="Assets\Script\InputValues.cs" />
     <Compile Include="Assets\Script\JsonDataManager.cs" />
     <Compile Include="Assets\Script\OutputController.cs" />
     <Compile Include="Assets\Script\QuestionControllerScript.cs" />
     <Compile Include="Assets\Script\QuestionManager.cs" />
+    <Compile Include="Assets\Script\ShowAllData.cs" />
     <Compile Include="Assets\Script\SignUpManager.cs" />
     <Compile Include="Assets\Script\SuccessHandler.cs" />
     <Compile Include="Assets\Script\ToggleManager.cs" />
