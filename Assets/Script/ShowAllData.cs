@@ -37,7 +37,7 @@ public class ShowAllData : MonoBehaviour
                     string jsonResult = System.Text.Encoding.UTF8.GetString(req.downloadHandler.data);
                     JsonData jsonData = JsonDataManager.instance.JsonPerser(jsonResult);
 
-                    print(jsonData[0]);
+                    print(jsonData[0].Keys);
 
                 }
             }

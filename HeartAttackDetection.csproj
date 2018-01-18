@@ -129,6 +129,7 @@
     <Compile Include="Assets\Script\SuccessHandler.cs" />
     <Compile Include="Assets\Script\ToggleManager.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
+    <Compile Include="Assets\Script\UserDataManager.cs" />
     <Compile Include="Assets\UnityLitJson-Example\JsonExample.cs" />
     <Compile Include="Assets\UnityLitJson\Extensions.cs" />
     <Compile Include="Assets\UnityLitJson\IJsonWrapper.cs" />

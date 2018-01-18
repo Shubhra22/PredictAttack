@@ -10,12 +10,13 @@ public class SignUpManager : MonoBehaviour
     public GameObject signupObject;
     public GameObject signinObject;
     public GameObject questionObject;
-
+    public GameObject selectionPanelObject;
 
     public string registerUrl;
     public string loginUrl;
     public string ageGenderUrl;
     public string heartAttackDataUrl;
+    public string userDataUrl;
 
     string uid;
 
@@ -134,6 +135,7 @@ public class SignUpManager : MonoBehaviour
 
         else
         {
+            print(www.text);
             JsonData test = JsonDataManager.instance.JsonPerser(www.text);
 
             string code = test[0]["code"].ToString();
@@ -141,7 +143,8 @@ public class SignUpManager : MonoBehaviour
             if (code == "Success")
             {
                 signinObject.SetActive(false);
-                questionObject.SetActive(true);
+                selectionPanelObject.SetActive(true);
+                //questionObject.SetActive(true);
                 StartCoroutine(GetUserAgeAndGender(uid));
 
             }
@@ -164,7 +167,7 @@ public class SignUpManager : MonoBehaviour
         string gender = test[0]["Gender"].ToString();
 
         QuestionControllerScript.instance.AgeAndGender(age, gender);
-
+        UserDataHandler();
         //print(test[0]["Age"]);
         // print(test["Age"] + " " + www.text);
 
@@ -223,9 +226,27 @@ public class SignUpManager : MonoBehaviour
 
         form.AddField("Class", OutputController.instance.resultText.text);
         WWW www = new WWW(heartAttackDataUrl, form);
+        yield return www;
+        print(www.text);
 
     }
 
+    IEnumerator GetUserData(string userId)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("UserId",userId);
+
+        WWW www = new WWW(userDataUrl, form);
+        yield return www;
+
+        UserDataManager.instance.MakeGridWithData(www.text);
+
+    }
+
+    public void UserDataHandler()
+    {
+        StartCoroutine(GetUserData(uid));
+    }
     /*
 $UserId =$_POST["UserId"];
 
