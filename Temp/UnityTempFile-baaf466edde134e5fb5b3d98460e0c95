@@ -108,6 +108,7 @@
 'Assets/Script/SuccessHandler.cs'
 'Assets/Script/ToggleManager.cs'
 'Assets/Script/UIManager.cs'
+'Assets/Script/UserDataManager.cs'
 'Assets/UnityLitJson-Example/JsonExample.cs'
 'Assets/UnityLitJson/Extensions.cs'
 'Assets/UnityLitJson/IJsonWrapper.cs'

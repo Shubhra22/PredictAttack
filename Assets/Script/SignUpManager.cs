@@ -43,9 +43,9 @@ public class SignUpManager : MonoBehaviour
         string gender = d.options[d.value].text;
         string profession = signupObject.transform.Find("Profession").GetComponent<InputField>().text;
         string cellNum = signupObject.transform.Find("Mobile").GetComponent<InputField>().text;
-        string email = signupObject.transform.Find("Email").GetComponent<InputField>().text;
+        string password = signupObject.transform.Find("Password").GetComponent<InputField>().text;
 
-        StartCoroutine(AddNewUser(fname, lname, age, gender, profession, cellNum, email));
+        StartCoroutine(AddNewUser(fname, lname, age, gender, profession, cellNum, password));
 
         //
 
@@ -58,16 +58,17 @@ public class SignUpManager : MonoBehaviour
 
     public void OnclickSignIn()
     {
-        string fname = signinObject.transform.Find("First Name").GetComponent<InputField>().text;
         string mobile = signinObject.transform.Find("Mobile").GetComponent<InputField>().text;
+        string password = signinObject.transform.Find("Password").GetComponent<InputField>().text;
 
-        if (fname == "" || mobile == "")
+
+        if (password == "" || mobile == "")
         {
             ErrorHandler.instance.OnEmptyInput();
             return;
         }
 
-        StartCoroutine(SignIn(fname, mobile));
+        StartCoroutine(SignIn(password, mobile));
 
     }
 
@@ -76,7 +77,7 @@ public class SignUpManager : MonoBehaviour
         StartCoroutine(GetUserAgeAndGender("66"));
     }
 
-    IEnumerator AddNewUser(string fname, string lname, string age, string gender, string profession, string cell, string email)
+    IEnumerator AddNewUser(string fname, string lname, string age, string gender, string profession, string cell, string password)
     {
         WWWForm form = new WWWForm();
 
@@ -86,7 +87,7 @@ public class SignUpManager : MonoBehaviour
         form.AddField("Gender", gender);
         form.AddField("Profession", profession);
         form.AddField("Mobile", cell);
-        form.AddField("Email", email);
+        form.AddField("Password", password);
 
         WWW www = new WWW(registerUrl, form);
         yield return www;
@@ -117,12 +118,12 @@ public class SignUpManager : MonoBehaviour
 
     }
 
-    IEnumerator SignIn(string fname, string mobile)
+    IEnumerator SignIn(string mobile,string password)
     {
         
-        WWWForm form = new WWWForm();
-        form.AddField("FirstName", fname);
+        WWWForm form = new WWWForm();   
         form.AddField("Mobile", mobile);
+        form.AddField("Password", password);
 
         WWW www = new WWW(loginUrl, form);
         yield return www;
