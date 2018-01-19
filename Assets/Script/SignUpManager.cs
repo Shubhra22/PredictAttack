@@ -68,7 +68,7 @@ public class SignUpManager : MonoBehaviour
             return;
         }
 
-        StartCoroutine(SignIn(password, mobile));
+        StartCoroutine(SignIn(mobile, password));
 
     }
 
@@ -194,11 +194,14 @@ public class SignUpManager : MonoBehaviour
         form.AddField("CholYear", entry[5]);
         form.AddField("Smoke", entry[6]);
         form.AddField("FamilyHpten", entry[7]);
+        form.AddField("ChestPain",entry[8]);
         form.AddField("Neausea", entry[11]);
         form.AddField("Sweating", entry[12]);
         form.AddField("Palpitation", 0);
         form.AddField("Dyspnea", entry[9]);
+        form.AddField("Giddiness", entry[10]);
         form.AddField("Syncope", entry[13]);
+        form.AddField("Vomiting", entry[14]);
         form.AddField("ChestPainLocation", entry[15]);
 
         form.AddField("MarkFigure", entry[16]);
